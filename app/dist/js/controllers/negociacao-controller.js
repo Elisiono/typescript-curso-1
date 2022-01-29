@@ -1,8 +1,16 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import { MensagemView } from './../views/mensagem-view.js';
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
 import { NegociacoesView } from "../views/negociacoes-view.js";
 import { DiaDaSemana } from '../enums/dias-da-semana.js';
+import { logarTempoDeExecucao } from '../decorators/logar-tempo-execucao.js';
+import { inspect } from '../decorators/inspect.js';
 export class NegociacaoController {
     constructor() {
         this.negociacoes = new Negociacoes();
@@ -37,3 +45,7 @@ export class NegociacaoController {
         this.MensagemView.update('Negociação Adicionada com sucesso');
     }
 }
+__decorate([
+    inspect(),
+    logarTempoDeExecucao(true)
+], NegociacaoController.prototype, "adiciona", null);
